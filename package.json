@@ -11,6 +11,10 @@
   "scripts": {
     "dev": "concurrently -n api,web -c blue,green \"pnpm --filter @tasklane/api dev\" \"pnpm --filter @tasklane/web dev\"",
     "build": "pnpm --filter @tasklane/shared build && pnpm --filter @tasklane/api build && pnpm --filter @tasklane/web build",
+    "build:api": "pnpm --filter @tasklane/shared build && pnpm --filter @tasklane/api build",
+    "build:web": "pnpm --filter @tasklane/shared build && pnpm --filter @tasklane/web build",
+    "start:api": "node apps/api/dist/main",
+    "start:web": "node apps/web/.next/standalone/apps/web/server.js",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:strict": "eslint . --ext .ts,.tsx,.js,.jsx --max-warnings 0",
     "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
@@ -45,5 +49,8 @@
     "*.{json,md,yml,yaml,css,scss}": [
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "http-proxy": "^1.18.1"
   }
 }
