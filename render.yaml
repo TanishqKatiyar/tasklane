@@ -5,7 +5,7 @@ services:
     env: node
     region: singapore # closest to India — lowest latency
     buildCommand: pnpm install --frozen-lockfile && pnpm --filter @tasklane/shared build && pnpm --filter @tasklane/api build
-    startCommand: node apps/api/dist/main
+    startCommand: cd apps/api && npx prisma migrate deploy && cd ../.. && node apps/api/dist/main
     healthCheckPath: /api/v1/health
     envVars:
       - key: NODE_VERSION
